@@ -1,1 +1,0 @@
-./osmcvc -checkcellcenters -markers=gyms.csv osmEx.geojson
