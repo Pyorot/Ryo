@@ -1,5 +1,5 @@
 scrap
 node_modules
 .vscode
-data
+data/*
 !data/gyms.json
