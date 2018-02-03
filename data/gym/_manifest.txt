@@ -1,0 +1,37 @@
+gymsMori.geojson	London gym index by Mori
+|
+rawify.js		reformat + add missing data
+|
+rawGyms.json		List of London gyms in [lat,lng,name] format (all string)
+| |
+| csvify.js		reformat
+| |
+| rawGyms.csv		rawGyms in osmcv format
+| |
+| | exeModel.geojson	ExE classifier
+| | |
+| osmcv.exe		osmcoverer (mod)
+| |
+| exeGyms.csv		rawGyms.csv filtered by ExE classifier
+| |
+| | cellify.js		C12 index generator
+| | |
+| | cellDict.json	C12 index
+| | |
+gymify.js		Compiles gym data
+|
+../gyms.json		Gym data for Ryo
+
+BONUS:
+rawGyms -> mapify.js -> rawGymGeo.geojson
+gyms.json -> cells.js -> [release]
+
+Gym:
+point: [lat,lng] (float)	rawGyms.json
+name: replace ' ; trim		rawGyms.json
+c12id: S2L12 cell ID		s2-geometry
+c12: S2L12 cell index		cellDict.json
+exe: bool			exeGyms.csv
+
+raid: Raid
+updated: timecode (int)
