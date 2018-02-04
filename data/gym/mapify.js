@@ -17,4 +17,4 @@ for (rawGym of input) {
     output.features.push(point)
 }
 
-fs.writeFileSync('./rawGymsGeo.geojson',JSON.stringify(output, null, 4))
+fs.writeFileSync('./rawGyms.geojson',JSON.stringify(output, null, 4))

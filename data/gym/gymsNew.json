@@ -48,6 +48,7 @@
     ["51.509254","0.121563", "Manor Hall"],
     ["51.549152","0.001640", "Stratford Masjid"],
     ["51.391857","-0.098121", "Croydon and its History"],
+    ["51.376041","-0.103283", "Centrale Shopping Centre"],
     ["51.421830","-0.312021", "Back Entrance to Langdon Park"],
     ["51.506084","-0.320487", "The Forester"],
     ["51.387956","-0.216157", "King George's Fuels Outdoor Gym"],
@@ -71,5 +72,16 @@
     ["51.347524","-0.083642", "Elmfield Way Post Office"],
     ["51.541639","0.127612", "Parsons Park"],
     ["51.515996","-0.350894", "Hanwell Cricket Club Clubhouse"],
-    ["51.376041","-0.103283", "Centrale Shopping Centre"]
+
+    ["51.342933","-0.063011", "Selsdon Triangle Clock Tower"],
+    ["51.373794","-0.305919", "Quercus Rubra"],
+    ["51.400548","-0.052593", "National Cycle Sign"],
+    ["51.422018","-0.355780", "Brew House Bushy Park"],
+    ["51.425077","-0.171069", "Trafalgar Arms"],
+    ["51.431961","0.185326", "Dartford Heath (South Entrance,  Leyton Cross Road)"],
+    ["51.435385","-0.395586", "Feltham Rugby Club"],
+    ["51.487788","-0.095413", "East Street Market Entrance"],
+    ["51.495669","-0.129503", "The Home Office"],
+    ["51.526735","0.028297", "Plaistow Parks"],
+    ["51.557016","-0.198469", "Bianchi"]
 ]
