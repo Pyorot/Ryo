@@ -9,7 +9,7 @@ for (loc in gyms) {
     gyms[loc].obsolete = 0
     gyms[loc].alerts = {}
 }
-const raidLog = require('fs').createWriteStream('./raidLog.txt')
+const raidLog = require('fs').createWriteStream('./raidLog.txt', {flags:'a'})
 const EOL = require('os').EOL
 
 function Raid(rawRaid) {
@@ -60,7 +60,17 @@ async function run() {
             gym.raid = raid
             gym.obsolete = raid.active ? raid.end : raid.start - 2*60
             for (alert in gym.alerts) {/* send alert */}
-            raidLog.write(rawRaid.loc+' | '+JSON.stringify(raid)+EOL)
+
+            let record = rawRaid.loc.replace(',','/') + ','
+                       + raid.start.date().hhmmss() + ','
+                       + raid.end.date().hhmmss() + ','
+                       + raid.id + ','
+                       + raid.name + ','
+                       + raid.tier + ','
+                       + raid.active
+            if (raid.active) {record += ',' + raid.team + ',' + raid.move1 + ',' + raid.move2}
+            raidLog.write(record + EOL)
+
             newCounter++
         } else {return}
     })
@@ -73,6 +83,7 @@ async function run() {
 }
 
 async function go() {setTimeout(go, await run()*1000)}
+go()
 
 
 

@@ -70928,6 +70928,19 @@
                     51.557016
                 ]
             }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Ilford Town Hall"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.074063,
+                    51.559054
+                ]
+            }
         }
     ]
 }
