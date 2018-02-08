@@ -70941,6 +70941,58 @@
                     51.559054
                 ]
             }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Wandle Meadow Nature Park"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.181381,
+                    51.423694
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Dartford Heath - Oakfield Lane"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.195945,
+                    51.431479
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Unique Hair"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.084105,
+                    51.495264
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Boxheads"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.014868,
+                    51.576041
+                ]
+            }
         }
     ]
 }
