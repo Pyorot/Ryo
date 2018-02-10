@@ -70993,6 +70993,58 @@
                     51.576041
                 ]
             }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Surrey Canal Park Entrance Peckham"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.070247,
+                    51.474544
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Faith House"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.062821,
+                    51.619821
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Pyramide "
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.199596,
+                    51.485629
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "The Hanworth Centre"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.391117,
+                    51.436462
+                ]
+            }
         }
     ]
 }
