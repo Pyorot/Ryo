@@ -1,3 +1,5 @@
 scrap
 node_modules
 .vscode
+.env
+channels/*
