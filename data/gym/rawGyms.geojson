@@ -71045,6 +71045,84 @@
                     51.436462
                 ]
             }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Richmond Park - You Are Here"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.268536,
+                    51.439581
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Feltham Evangelical Church"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.413724,
+                    51.442711
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Twickenham Rugby Stadium"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.342419,
+                    51.456503
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "The Great Exhibition 1851 Hyde Park Plaque"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.171518,
+                    51.50239
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "The Globe - 2002"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.369265,
+                    51.508953
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Lime Pillar"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.063791,
+                    51.555728
+                ]
+            }
         }
     ]
 }

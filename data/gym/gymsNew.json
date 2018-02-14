@@ -92,9 +92,16 @@
     ["51.495264","-0.084105", "Unique Hair"],
     ["51.576041","-0.014868", "Boxheads"],
 	
-	["51.474544","-0.070247","Surrey Canal Park Entrance Peckham"],
-	["51.619821","-0.062821","Faith House"],
-	["51.485629","-0.199596","Pyramide "],
+	["51.474544","-0.070247", "Surrey Canal Park Entrance Peckham"],
+	["51.619821","-0.062821", "Faith House"],
+	["51.485629","-0.199596", "Pyramide "],
 
-	["51.436462","-0.391117","The Hanworth Centre"]
+	["51.436462","-0.391117", "The Hanworth Centre"],
+	
+	["51.439581","-0.268536", "Richmond Park - You Are Here"],
+	["51.442711","-0.413724", "Feltham Evangelical Church"],
+	["51.456503","-0.342419", "Twickenham Rugby Stadium"],
+	["51.502390","-0.171518", "The Great Exhibition 1851 Hyde Park Plaque"],
+	["51.508953","-0.369265", "The Globe - 2002"],
+	["51.555728","0.063791", "Lime Pillar"]
 ]
