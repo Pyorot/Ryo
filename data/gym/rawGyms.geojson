@@ -71123,6 +71123,71 @@
                     51.555728
                 ]
             }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Edmonton Heritage Trail Plaque No. 15"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.071574,
+                    51.614553
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Wigmore Lawn Tennis Club"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.133343,
+                    51.432283
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Edmonton Cemetery Chapel"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.080032,
+                    51.629405
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Mosaic Benches"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.0271,
+                    51.486856
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "The Minka House"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.300446,
+                    51.478606
+                ]
+            }
         }
     ]
 }

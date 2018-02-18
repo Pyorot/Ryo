@@ -5,6 +5,10 @@ gymsMori.geojson	London gym index by Mori
 rawify.js		reformat + add missing data
 |
 rawGyms.json		List of London gyms in [lat,lng,name] format (all string)
+| | |
+| | mapify.js		reformat
+| | |
+| | rawGyms.geojson	rawGyms in GeoJSON format
 | |
 | csvify.js		reformat
 | |
@@ -21,12 +25,12 @@ rawGyms.json		List of London gyms in [lat,lng,name] format (all string)
 | | cellDict.json	C12 index
 | | |
 gymify.js		Compiles gym data
+| |
+| gyms.csv		Gym data in csv
 |
 ../gyms.json		Gym data for Ryo
 
-BONUS:
-rawGyms -> mapify.js -> rawGyms.geojson
-gyms.json -> cell.js -> [release]
+osmcv query:		./osmcv -markers=rawGyms.csv exeModel.geojson
 
 Gym:
 point: [lat,lng] (float)	rawGyms.json
@@ -37,12 +41,8 @@ exe: bool			exeGyms.csv
 
 raid: Raid
 obsolete: timecode (int)
-alerts: ???
-
+alerts: [Channel = {name, id, filter}]
 
 To compile Go file:
 go get ./... 			installs dependencies
 go build [file]			compiles file
-
-osmcv query:
-./osmcv -markers=rawGyms.csv exeModel.geojson
