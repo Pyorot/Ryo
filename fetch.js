@@ -1,10 +1,9 @@
+error = require('./error.js')
 const request = require('superagent')
-const error = require('./error.js')
-
 module.exports = fetch
 
 function fetch() {
-    url = 'https://londonpogomap.com/raids.php'
+    let url = 'https://londonpogomap.com/raids.php'
     return new Promise((resolve,reject) => {
         request
             .get(url)
@@ -21,19 +20,19 @@ function fetch() {
                 if (data.raids && data.meta) {
                     resolve(data)
                 } else {
-                    error('x ERROR LPM: returned garbage')
                     reject('garbage')
                 }
             })
             .catch(err => {
-                error('x ERROR LPM: failed to fetch (http)')
                 if (err.response) {
-                    error('       http:', err.response.status)
+                    reject('http-' + err.response.status)
+                } else if (err.errno == 'ETIMEDOUT') {
+                    reject('timeout-auto')
                 } else {
-                    error(JSON.stringify(err))
+                    error('x LPM [unknown dump]:', JSON.stringify(err))
+                    reject('unknown')
                 }
-                reject('http')
             })
-        setTimeout(() => reject('timeout'), 10*1000)    // manual rejection after 10s (to prevent hanging awaiting reply)
+        setTimeout(() => reject('timeout-manual'), 10*1000)    // manual rejection after 10s (to prevent hanging awaiting reply)
     })
 }

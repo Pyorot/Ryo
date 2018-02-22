@@ -1,15 +1,18 @@
-const fs = require('fs')
-const dotenv = require('dotenv'); dotenv.load() // loads env variables from .env into process.env
-const fetch = require('./fetch.js')
-const post = require('./post.js')
+// globals
+dotenv = require('dotenv'); dotenv.load() // loads env variables from .env into process.env
 require('./date.js')
-const error = require('./error.js')
-const dex = require('./data/pokemon/pokedex.json')
-const moves = require('./data/pokemon/moves.json')
-var gyms = require('./data/gyms.json')
-if (process.env.LOG == 'true') {var raidLog = fs.createWriteStream('./raidLog.txt', {flags:'a'})}
-const EOL = require('os').EOL
+error = require('./error.js')
+EOL = require('os').EOL
+gyms = {}
 
+const fetch = require('./fetch.js')
+const gymer = require('./gym.js') // loads gyms variable and alerts if .env.ALERT
+const log = require('./log.js') // loads raid logger if .env.LOG
+const alert = require('./alert.js')
+
+// creates raids from rawRaids using data from /data/pokemon/
+var dex = require('./data/pokemon/pokedex.json')
+var moves = require('./data/pokemon/moves.json')
 function Raid(rawRaid) {
     this.start = parseInt(rawRaid.raid_start)
     this.end = parseInt(rawRaid.raid_end)
@@ -24,6 +27,7 @@ function Raid(rawRaid) {
     }
 }
 
+// checks if a rawRaid is new to a gym
 function shouldUpdate(gym, rawRaid) {
     return new Date().number() >= gym.obsolete &&
         (!gym.raid 
@@ -32,6 +36,7 @@ function shouldUpdate(gym, rawRaid) {
         )
 }
 
+// runs an instance of fetch + process, and returns timeout to next intended run
 async function run() {
     let start = new Date()
     console.log('\n# Start |', start.hhmmss())
@@ -42,7 +47,7 @@ async function run() {
         raids = data.raids
         length = raids.length
     } catch (err) {
-        error('x ERROR index: failed to fetch; retrying in 10s.')
+        error(`x LPM: failed to fetch (${err}); retrying in 10s.`)
         return 10
     }
     let fetchEnd = new Date()
@@ -50,14 +55,18 @@ async function run() {
     
     let newCounter = 0
     raids.forEach(rawRaid => {
-        rawRaid.loc = parseFloat(rawRaid.lat).toFixed(6) + ',' + parseFloat(rawRaid.lng).toFixed(6)
+        let lat = parseFloat(rawRaid.lat).toFixed(6); let lng = parseFloat(rawRaid.lng).toFixed(6)
+        rawRaid.loc = lat + ',' + lng
         let gym = gyms[rawRaid.loc]
-        if (!gym) {error('x ERROR index: gym not found', rawRaid.loc); return}
+        if (!gym) {
+            error(`x INDEX: gym not found: ${rawRaid.loc}.`)
+            gyms[rawRaid.loc] = {point: [lat, lng], raid: null, obsolete: 0, alerts: []}       // skeletal gym
+        }
         if (shouldUpdate(gym, rawRaid)) {
             let raid = new Raid(rawRaid)
             gym.raid = raid
             gym.obsolete = raid.active ? raid.end : raid.start - 2*60
-            if (process.env.ALERT == 'true') {try {alert(gym)} catch (err) {error('x SYNC RAID ALERT CRASH', err)}}
+            if (process.env.ALERT == 'true') {alert(gym)}
             if (process.env.LOG == 'true') {log(gym)}
             newCounter++
         }
@@ -70,72 +79,9 @@ async function run() {
     return 2*60
 }
 
-function alert(gym) {
-    let raid = gym.raid; if (!raid) {error('x ALERT: NO RAID', ':', gym.name); return}
-    for (channel of gym.alerts) {
-        if (channel.filter(raid)) {
-            if (!raid.text) {raid.text = tell(gym)}
-            post.post(channel, gym)
-              .catch(err => error('x ASYNC POST EXCEPTION'))
-        }
-    }
-}
-
-function log(gym) {
-    let raid = gym.raid; if (!raid) {error('x LOG: NO RAID', ':', gym.name); return}
-    let record = gym.point[0]+'/'+gym.point[1] + ','
-               + raid.start.date().hhmmss() + ','
-               + raid.end.date().hhmmss() + ','
-               + raid.id + ','
-               + raid.name + ','
-               + raid.tier + ','
-               + raid.active
-    if (raid.active) {record += ',' + raid.team + ',' + raid.move1 + ',' + raid.move2}
-    raidLog.write(record + EOL)
-}
-
-function tell(gym) {
-    let raid = gym.raid
-    return raid.tier + '* ' + (raid.active? "🐣 " + raid.name : "🥚")
-         + '\n| ' + (gym.exe? '⭐ ' : '') + gym.name
-         + '\n| ' + raid.start.date().hhmmss() + ' – ' + raid.end.date().hhmmss()
-         + (raid.active? '\n| ' + raid.move1 + '/' + raid.move2 + ' | ' + raid.team : '')
-}
-
-lambdas = {
-    all: raid => true
-}
-
-function load() {
-    for (loc in gyms) {
-        gyms[loc].raid = null
-        gyms[loc].obsolete = 0
-        gyms[loc].alerts = []
-    }
-
-    for (let folder of fs.readdirSync('channels')) {
-        console.log(folder, ':')
-        for (let file of fs.readdirSync('channels/'+folder)) {
-            let fileSplit = file.split('.')
-            if (fileSplit[2] == 'json') {
-                let channel = JSON.parse(fs.readFileSync('channels/'+folder+'/'+file))
-                for (let gymLoc in channel) {
-                    let channelID = fileSplit[0]
-                    let channelName = folder+'/'+fileSplit[1]
-                    let filter = channel[gymLoc]
-                    let lambda = filter[0] != "#" ? lambdas[filter] : eval('raid => '+filter.slice(1).trim())
-                    if (!lambda) {console.error('Lambda not found:', filter); continue}
-                    gyms[gymLoc].alerts.push({name: channelName, id: channelID, filter: lambda})
-                    console.log(channelID, channelName, gymLoc, gyms[gymLoc].name, filter)
-                }
-            }
-        }
-        console.log()
-    }
-}
-
+// runs fetch + process loop
 async function go() {setTimeout(go, await run()*1000)}
-if (process.env.AUTORUN == 'true') {load(); go()}
+if (process.env.AUTORUN == 'true') {go()}
 
 // Test
 _rawRaid = {
@@ -153,13 +99,11 @@ _raid = new Raid(_rawRaid)
 _loc = "51.505868,-0.203477"
 _gym = gyms[_loc]
 _gym.raid = _raid
-
 _hpChannel = {
     name: 'hpex',
     id: "410243553386692609",
     filter: raid => true
 }
-
 _pys1 = {
     name: 'PyS1',
     id: "293838131407486980",

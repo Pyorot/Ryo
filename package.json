@@ -1,0 +1,28 @@
+{
+  "name": "ryo",
+  "version": "1.0.0",
+  "description": "Raid alert bot",
+  "main": "index.js",
+  "dependencies": {
+    "csv": "^2.0.0",
+    "dotenv": "^5.0.0",
+    "s2-geometry": "^1.2.9",
+    "superagent": "^3.8.2"
+  },
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pyorot/Ryo.git"
+  },
+  "author": "Pyorot",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pyorot/Ryo/issues"
+  },
+  "homepage": "https://github.com/Pyorot/Ryo#readme",
+  "devDependencies": {
+    "ava": "^0.25.0"
+  }
+}

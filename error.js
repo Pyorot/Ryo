@@ -1,8 +1,9 @@
 // Writes errors to stderr and to ./error.txt
-Date.prototype.full = function() {return this.toDateString() + ' ' + this.toTimeString().slice(0,8)}
+require('./date.js')
 const errorStream = require('fs').createWriteStream('./error.txt', {flags: 'a'})
 const EOL = require('os').EOL
 module.exports = function(...texts) {
+    let now = new Date()
     console.error(...texts)
-    errorStream.write(new Date().full() + ' | ' + Array.prototype.join.call(arguments, ' ') + EOL)
+    errorStream.write(now.mmdd() + ' ' + now.hhmmss() + ' | ' + Array.prototype.join.call(arguments, ' ') + EOL)
 }
