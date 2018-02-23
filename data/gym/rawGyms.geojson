@@ -71188,6 +71188,136 @@
                     51.478606
                 ]
             }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Vale Farm"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.316555,
+                    51.559408
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Canal Mural"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.058067,
+                    51.622518
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Westerham Avenue Post Office. "
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.082067,
+                    51.622084
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Romford Golf Club"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.198897,
+                    51.587362
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Three Bell Corner"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.056903,
+                    51.426156
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Circular Trail "
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.043677,
+                    51.485744
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Big Face"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.109959,
+                    51.476901
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Cat Sculpture"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.015587,
+                    51.479067
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Toynbee Memorial"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.215553,
+                    51.424254
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Selhurst Evangelical Church"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.08759,
+                    51.394258
+                ]
+            }
         }
     ]
 }
