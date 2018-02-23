@@ -71318,6 +71318,71 @@
                     51.394258
                 ]
             }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Mollie&#039;s Memorial Bench "
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.120019,
+                    51.369393
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Mysterious Pringles Bottle Buildings"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.10629,
+                    51.505296
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Belgian soldiers memorial"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.231996,
+                    51.529619
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Horsenden Hill East"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.325025,
+                    51.550305
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "The Old Kings Head Façade"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.117248,
+                    51.556548
+                ]
+            }
         }
     ]
 }
