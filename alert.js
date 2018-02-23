@@ -3,6 +3,7 @@ require('./date.js')
 const post = require('./post.js')
 module.exports = alert
 
+// filters and sends gym
 function alert(gym) {
     let raid = gym.raid
         if (!raid) {error(`x ALERT: no raid at gym ${gym.name}.`); return}
@@ -20,6 +21,7 @@ function alert(gym) {
     }
 }
 
+// converts gym to notification text
 function tell(gym) {
     let raid = gym.raid
     return raid.tier + '* ' + (raid.active? "🐣 " + raid.name : "🥚")
@@ -28,6 +30,7 @@ function tell(gym) {
          + (raid.active? '\n| ' + raid.move1 + '/' + raid.move2 + ' | ' + raid.team : '')
 }
 
+// converts gym to Discord message and attempts to send to channel
 async function send(channel, gym) {
     let postInfo = channel.name + ' > ' + gym.raid.name + ' ' + gym.raid.start.date().hhmmss()
     let message = {

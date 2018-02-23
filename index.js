@@ -58,11 +58,12 @@ async function run() {
         let lat = parseFloat(rawRaid.lat).toFixed(6); let lng = parseFloat(rawRaid.lng).toFixed(6)
         rawRaid.loc = lat + ',' + lng
         let gym = gyms[rawRaid.loc]
-        if (!gym) {
+        if (!gym) {                                // should make a note and add gym temporarily
             error(`x INDEX: gym not found: ${rawRaid.loc}.`)
-            gyms[rawRaid.loc] = {point: [lat, lng], raid: null, obsolete: 0, alerts: []}       // skeletal gym
+            gym = {point: [lat, lng], raid: null, obsolete: 0, alerts: []}
+            gyms[rawRaid.loc] = gym
         }
-        if (shouldUpdate(gym, rawRaid)) {
+        if (shouldUpdate(gym, rawRaid)) {          // should update gym in gyms model, and log + alert it
             let raid = new Raid(rawRaid)
             gym.raid = raid
             gym.obsolete = raid.active ? raid.end : raid.start - 2*60

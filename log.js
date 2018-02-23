@@ -8,12 +8,14 @@ if (!fs.existsSync('log')) {fs.mkdirSync('log')}
 var raidLog
 module.exports = write
 
-function start() {raidLog = fs.createWriteStream(`./log/${new Date().mmdd()}.txt`, {flags:'a'})}
+// file management
+function start() {raidLog = fs.createWriteStream(`./log/${new Date().mmdd()}.csv`, {flags:'a'})}
 function restart() {raidLog.end(); start()}
 if (process.env.LOG == 'true') {start(); setInterval(restart, 24*60*60*1000)}
 
 function write(gym) {raidLog.write(record(gym) + EOL)}
 
+// converts gym to log csv format
 function record(gym) {
     let raid = gym.raid
         if (!raid) {error(`x LOG: no raid at gym ${gym.name}.`); return}
