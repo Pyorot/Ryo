@@ -19,7 +19,7 @@ function write(gym) {raidLog.write(record(gym) + EOL)}
 function record(gym) {
     let raid = gym.raid
         if (!raid) {error(`x LOG: no raid at gym ${gym.name}.`); return}
-    let record = gym.loc + ','
+    let record = gym.loc.replace(',','/') + ','
                + raid.start.date().hhmmss() + ','
                + raid.end.date().hhmmss() + ','
                + raid.id + ','

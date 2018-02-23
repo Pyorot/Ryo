@@ -60,7 +60,7 @@ async function run() {
         let gym = gyms[rawRaid.loc]
         if (!gym) {                                // should make a note and add gym temporarily
             error(`x INDEX: gym not found: ${rawRaid.loc}.`)
-            gym = {point: [lat, lng], raid: null, obsolete: 0, alerts: []}
+            gym = {loc: rawRaid.loc, raid: null, obsolete: 0, alerts: []}
             gyms[rawRaid.loc] = gym
         }
         if (shouldUpdate(gym, rawRaid)) {          // should update gym in gyms model, and log + alert it
