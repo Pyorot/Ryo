@@ -11,7 +11,7 @@ function alert(gym) {
         try {
             var pass = channel.filter(raid)
         } catch (err) {
-            error(`x ALERT: ${channel.name} failed to filter a raid.`)
+            error(`x ALERT: ${channel.name} at ${gym.loc} failed to filter a raid.`)
             error(`x ALERT [unknown dump]: ${err}`)
         }
         if (pass) {
@@ -44,7 +44,7 @@ async function send(channel, gym) {
     for (let attempt = 1; attempt <= 3; attempt++) {
         try {
             if (process.env.POST == 'true') {
-                await post.discord(channel.id, message)
+                await post(channel.id, message)
             }
             console.log(`> Sent ${process.env.POST == 'true' ? '' : '[test]'} > ${postInfo}`)
             break

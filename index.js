@@ -72,12 +72,14 @@ async function run() {
             newCounter++
         }
     })
+
     let processEnd = new Date()
+    let timeout = start.getHours() <= 20 ? 2*60 : (7*60+45)*60
     console.log('- Resolved',
                 '| new', newCounter,
-                '| took', (processEnd.number() - fetchEnd.number()).toFixed(3))
-    
-    return 2*60
+                '| took', (processEnd.number() - fetchEnd.number()).toFixed(3),
+                '| timeout', timeout+'s')
+    return timeout
 }
 
 // runs fetch + process loop

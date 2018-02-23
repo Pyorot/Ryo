@@ -32,7 +32,7 @@ function loadAlerts() {
                 let gym = gyms[loc]
                 if (!gym) {error(`x GYM: could not find gym ${loc} specified in ${channelName}.`); continue}
                 let lambda = filter[0] != '~' ? lambdas[filter] : eval(`raid => ${filter.slice(1).trim()}`)
-                if (!lambda) {error(`x GYM: could not find lambda ${filter}.`); continue}
+                if (!lambda) {error(`x GYM: could not find lambda ${filter} specified in ${channelName}.`); continue}
                 gym.alerts.push({name: channelName, id: channelID, filter: lambda})
                 console.log('. GYM: loaded', channelID, channelName, loc, gym.name, filter)
             }

@@ -16,11 +16,9 @@ function discord(channelID, message) {    // Discord send-message wrapper
             .send(JSON.stringify(message))
             .then(resolve)
             .catch(err => {
-                console.log(message)
                 if (err.response && err.response.text) {
-                    error('x DISCORD: status:', err.response.status,
-                        '\n         - discord code:', JSON.parse(err.response.text).code,
-                        '\n         - discord message:', JSON.parse(err.response.text).message)
+                    let errInfo = JSON.parse(err.response.text)
+                    error(`x DISCORD: ${err.response.status}-${errInfo.code}: ${errInfo.message}.`)
                     reject('http-' + err.response.status)
                 } else if (err.errno == 'ETIMEDOUT') {
                     reject('timeout-auto')
@@ -32,3 +30,8 @@ function discord(channelID, message) {    // Discord send-message wrapper
         setTimeout(() => reject('timeout-manual'), 10*1000)    // manual rejection after 10s (to prevent hanging awaiting reply)
     })
 }
+
+// A litany of errors:
+// http-xxx: Discord responded with an error (more info is logged).
+// timeout-auto: Discord didn't respond, and superagent called a timeout.
+// timeout-manual: Discord didn't respond, and superagent missed a timeout.

@@ -36,3 +36,9 @@ function fetch() {
         setTimeout(() => reject('timeout-manual'), 10*1000)    // manual rejection after 10s (to prevent hanging awaiting reply)
     })
 }
+
+// A litany of errors:
+// garbage: LPM responded with no error, but sent incorrectly-formatted data.
+// http-xxx: LPM (or Cloudflare) responded with an error.
+// timeout-auto: LPM didn't respond, and superagent called a timeout.
+// timeout-manual: LPM didn't respond, and superagent missed a timeout.
