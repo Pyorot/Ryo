@@ -71383,6 +71383,19 @@
                     51.556548
                 ]
             }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Sandilands Tram Station "
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.077822,
+                    51.375012
+                ]
+            }
         }
     ]
 }
