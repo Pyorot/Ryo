@@ -8,9 +8,8 @@ function alert(gym) {
     let raid = gym.raid
         if (!raid) {error(`x ALERT: no raid at gym ${gym.name}.`); return}
     for (let channel of gym.alerts) {
-        try {
-            var pass = channel.filter(raid)
-        } catch (err) {
+        let pass
+        try {pass = channel.filter(raid)} catch (err) {
             error(`x ALERT: ${channel.name} at ${gym.loc} failed to filter a raid.`)
             error(`x ALERT [unknown dump]: ${err}`)
         }
@@ -46,7 +45,7 @@ async function send(channel, gym) {
             if (process.env.POST == 'true') {
                 await post(channel.id, message)
             }
-            console.log(`> Sent ${process.env.POST == 'true' ? '' : '[test]'} > ${postInfo}`)
+            console.log(`> Sent ${process.env.POST == 'true' ? '' : '[test] '}> ${postInfo}`)
             break
         } catch (err) {
             error(`x ALERT: failed to post (${err}) | attempt ${attempt} | ${postInfo}`)
