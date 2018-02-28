@@ -10,7 +10,8 @@
     "superagent": "^3.8.2"
   },
   "scripts": {
-    "test": "ava"
+    "test": "ava --verbose --color",
+	"test-w": "ava --watch --verbose --color"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,10 @@
   "homepage": "https://github.com/Pyorot/Ryo#readme",
   "devDependencies": {
     "ava": "^0.25.0"
-  }
+  },
+  "ava": {
+		"files": [
+			"test/*.js"
+		]
+	}
 }

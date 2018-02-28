@@ -5,6 +5,9 @@ error = require('./error.js')
 EOL = require('os').EOL
 gyms = {}
 
+// process.stdout.write(String.fromCharCode(27) + "]0;" + 'Ryo' + String.fromCharCode(7)) // sets console title
+console.log('# Ryo')
+const readline = require('readline')
 const fetch = require('./fetch.js')
 const gymer = require('./gym.js') // loads gyms variable and alerts if .env.ALERT
 const log = require('./log.js') // loads raid logger if .env.LOG
@@ -36,6 +39,25 @@ function shouldUpdate(gym, rawRaid) {
         )
 }
 
+// updates gyms with new raids, returning the gym if update, and null if no update
+function processRaid(rawRaid) {
+    let lat = parseFloat(rawRaid.lat).toFixed(6); let lng = parseFloat(rawRaid.lng).toFixed(6)
+    rawRaid.loc = lat + ',' + lng
+    if (!gyms[rawRaid.loc]) {                                // should log an error and add gym temporarily
+        error(`x INDEX: gym not found: ${rawRaid.loc}.`)
+        gymer.initGym(rawRaid.loc)
+    }
+    let gym = gyms[rawRaid.loc]
+    if (shouldUpdate(gym, rawRaid)) {          // should update gym in gyms model, and log + alert it
+        let raid = new Raid(rawRaid)
+        gym.raid = raid
+        gym.obsolete = raid.active ? raid.end : raid.start - 2*60
+        return gym
+    } else {
+        return null
+    }
+}
+
 // runs an instance of fetch + process, and returns timeout to next intended run
 async function run() {
     let start = new Date()
@@ -54,27 +76,21 @@ async function run() {
     console.log('- Fetched | length', length, '| took', (fetchEnd.number() - start.number()).toFixed(3))
     
     let newCounter = 0
-    raids.forEach(rawRaid => {
-        let lat = parseFloat(rawRaid.lat).toFixed(6); let lng = parseFloat(rawRaid.lng).toFixed(6)
-        rawRaid.loc = lat + ',' + lng
-        let gym = gyms[rawRaid.loc]
-        if (!gym) {                                // should make a note and add gym temporarily
-            error(`x INDEX: gym not found: ${rawRaid.loc}.`)
-            gym = {loc: rawRaid.loc, raid: null, obsolete: 0, alerts: []}
-            gyms[rawRaid.loc] = gym
-        }
-        if (shouldUpdate(gym, rawRaid)) {          // should update gym in gyms model, and log + alert it
-            let raid = new Raid(rawRaid)
-            gym.raid = raid
-            gym.obsolete = raid.active ? raid.end : raid.start - 2*60
+    for (rawRaid of raids) {
+        let gym = process(rawRaid)
+        if (gym !== null) {
             if (process.env.ALERT == 'true') {alert(gym)}
-            if (process.env.LOG == 'true') {log(gym)}
+            if (process.env.LOG == 'true') {log.write(gym)}
             newCounter++
         }
-    })
-
+    }
     let processEnd = new Date()
-    let timeout = start.getHours() <= 20 ? 2*60 : (7*60+45)*60
+
+    let wake = start.getHours() != 21
+    let timeout = wake ? 2*60 : (7*60+30)*60
+    if (!wake) {setTimeout(log.restart, 4*60*60*1000)}
+    if (!wake) {setTimeout(gymer.loadAlerts, (4*60*60 + 15)*1000)}
+    
     console.log('- Resolved',
                 '| new', newCounter,
                 '| took', (processEnd.number() - fetchEnd.number()).toFixed(3),
@@ -112,3 +128,19 @@ _pys1 = {
     id: "293838131407486980",
     filter: raid => true
 }
+
+// Control via keypresses
+if (process.env.CONTROL == 'true') {
+    readline.emitKeypressEvents(process.stdin); process.stdin.setRawMode(true)    // set-up
+    process.stdin.on('keypress', (str, key) => {
+        switch (key.name) {
+            case 'h': console.log(`\n# Ryo | Commands: h - help; a - reload alerts; g - reload gym data; l - restart log; x = exit.`); break
+            case 'a': gymer.loadAlerts(); break
+            case 'g': gymer.reloadGyms(); break
+            case 'l': log.restart(); break
+            case 'x': process.exit()
+        }
+    })
+}
+
+module.exports = {Raid: Raid, processRaid: processRaid}

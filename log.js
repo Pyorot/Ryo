@@ -6,12 +6,16 @@ EOL = require('os').EOL
 
 if (!fs.existsSync('log')) {fs.mkdirSync('log')}
 var raidLog
-module.exports = write
+module.exports = {write: write, start: start, restart: restart}
 
 // file management
-function start() {raidLog = fs.createWriteStream(`./log/${new Date().mmdd()}.csv`, {flags:'a'})}
+function start() {
+    let time = new Date()
+    raidLog = fs.createWriteStream(`./log/${new Date().mmdd()}.csv`, {flags:'a'})
+    console.log(`\n# LOG: started log | ${time.hhmmss()}`)
+}
 function restart() {raidLog.end(); start()}
-if (process.env.LOG == 'true') {start(); setInterval(restart, 24*60*60*1000)}
+if (process.env.LOG == 'true') {start()}
 
 function write(gym) {raidLog.write(record(gym) + EOL)}
 
