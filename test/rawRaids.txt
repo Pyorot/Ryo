@@ -1,0 +1,8 @@
+0 a raid
+{"lat":"51.511365","lng":"-0.106223","raid_spawn":"1519822816","raid_start":"1519826416","raid_end":"1519829116","pokemon_id":"0","level":"5","cp":"0","team":"0","move1":"0","move2":"0"}
+
+1 unregistered gym
+{"lat":"51.000000","lng":"0.000000","raid_spawn":"1519822816","raid_start":"1519826416","raid_end":"1519829116","pokemon_id":"0","level":"5","cp":"0","team":"0","move1":"0","move2":"0"}
+
+2 unregistered gym
+{"lat":"51.000001","lng":"0.000001","raid_spawn":"1519822816","raid_start":"1519826416","raid_end":"1519829116","pokemon_id":"0","level":"5","cp":"0","team":"0","move1":"0","move2":"0"}
