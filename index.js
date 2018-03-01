@@ -93,8 +93,8 @@ async function run() {
     let timeout = 60                                        // default period is 1 min
     if (start.getHours() == 21) {                           // when it first hits 9pm–10pm,
         timeout = (7*60+30)*60                              // the cycle times out to 4:30am
-        setTimeout(log.restart, 4*60*60*1000)               // with a log restart set for 1am
-        setTimeout(gymer.loadAlerts, (4*60*60 + 15)*1000)   // and an alert reload set for 15s later
+        if (process.env.LOG == 'true') {setTimeout(log.restart, 4*60*60*1000)}                  // with a log restart set for 1am
+        if (process.env.ALERT == 'true') {setTimeout(gymer.loadAlerts, (4*60*60 + 15)*1000)}    // and an alert reload set for 15s later
     }
     
     console.log('- Resolved',
