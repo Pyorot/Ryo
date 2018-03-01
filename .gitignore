@@ -3,5 +3,7 @@ node_modules
 .vscode
 .env
 channels/*
+!channels/418818183366180864.example.txt
+!channels/README.md
 data/raid log
 log
