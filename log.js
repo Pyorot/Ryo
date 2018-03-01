@@ -9,12 +9,12 @@ var raidLog
 module.exports = {write: write, start: start, restart: restart}
 
 // file management
-function start() {
+function start() {                              // creates new file with title the current date and sets it as log destination
     let time = new Date()
     raidLog = fs.createWriteStream(`./log/${new Date().mmdd()}.csv`, {flags:'a'})
     console.log(`\n# LOG: started log | ${time.hhmmss()}`)
 }
-function restart() {raidLog.end(); start()}
+function restart() {raidLog.end(); start()}     // closes current file before starting new one
 if (process.env.LOG == 'true') {start()}
 
 function write(gym) {raidLog.write(record(gym) + EOL)}

@@ -9,12 +9,12 @@ function alert(gym) {
         if (!raid) {error(`x ALERT: no raid at gym ${gym.name}.`); return}
     for (let channel of gym.alerts) {
         let pass
-        try {pass = channel.filter(raid)} catch (err) {
+        try {pass = channel.filter(raid)} catch (err) {     // filter may contain arbitrary code
             error(`x ALERT: ${channel.name} at ${gym.loc} failed to filter a raid.`)
             error(`x ALERT [unknown dump]: ${err}`)
         }
         if (pass) {
-            if (!raid.text) {raid.text = tell(gym)}
+            if (!raid.text) {raid.text = tell(gym)}         // annotate gym just-in-time for first send
             send(channel, gym)
         }
     }
@@ -48,8 +48,8 @@ async function send(channel, gym) {
             console.log(`> Sent ${process.env.POST == 'true' ? '' : '[test] '}> ${postInfo}`)
             break
         } catch (err) {
-            error(`x ALERT: failed to post (${err}) | attempt ${attempt} | ${postInfo}`)
-            await new Promise(resolve => setTimeout(resolve, 5*1000))   // = sleep(5)
+            error(`x ALERT: failed to post (${err}) | attempt ${attempt} (${attempt < 3? 'retry' : 'abort'}) | ${postInfo}`)
+            await new Promise(resolve => setTimeout(resolve, 5*1000))   // = sleep(5s)
         }
     }
 }
