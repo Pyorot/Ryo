@@ -71396,6 +71396,97 @@
                     51.375012
                 ]
             }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Kidbrooke Playground"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.029558,
+                    51.460648
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "St Bernard&#039;s Hospital Chapel"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.34959,
+                    51.507317
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Oakfield Park Playground "
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.209452,
+                    51.430727
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Giant Blue Chain Link"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.106957,
+                    51.508088
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "River Roding Creekside Trail - Information Board"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.09077,
+                    51.523464
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "The Galleon"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.13485,
+                    51.48301
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Latymer Park Playground"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.073801,
+                    51.626868
+                ]
+            }
         }
     ]
 }
