@@ -1,18 +1,18 @@
 gymsMori.geojson	London gym index by Mori
 |
-| gymsNew.json		Gyms missing from the above
+| gymsNew.json		gyms missing from the above
 | |
 rawify.js		reformat + add missing data
 |
-rawGyms.json		List of London gyms in [lat,lng,name] format (all string)
-| | |
-| | mapify.js		reformat
+rawGyms.json		list of London gyms in [lat,lng,name] format (all string)
+| |
+| post-rawify.js	reformats rawGyms to csv, txt, and GeoJSON
+| | | |
+| | | rawGyms.txt	rawGyms in legible txt format
 | | |
 | | rawGyms.geojson	rawGyms in GeoJSON format
 | |
-| csvify.js		reformat
-| |
-| rawGyms.csv		rawGyms in osmcv format
+| rawGyms.csv		rawGyms in osmcv-mandated csv format
 | |
 | | exeModel.geojson	ExE classifier (http://overpass-turbo.eu/s/vq5 on M25)
 | | |
@@ -20,29 +20,25 @@ rawGyms.json		List of London gyms in [lat,lng,name] format (all string)
 | |
 | exeGyms.csv		rawGyms.csv filtered by ExE classifier
 | |
-| | cellify.js		C12 index generator
+| | cellify.js		S2 level 12 index generator
 | | |
-| | cellDict.json	C12 index
+| | cellDict.json	S2 level 12 index
 | | |
-gymify.js		Compiles gym data
+gymify.js		compiles gym data
 | |
-| gyms.csv		Gym data in csv
+| gyms.csv		gym data in csv format
 |
-../gyms.json		Gym data for Ryo
+../gyms.json		gym data in Ryo format (see below)
 
 osmcv query:		./osmcv -markers=rawGyms.csv exeModel.geojson
 
-Gym:
-point: [lat,lng] (float)	rawGyms.json
-name: replace ' ; trim		rawGyms.json
-c12key: S2L12 cell ID		s2-geometry
-c12: S2L12 cell index		cellDict.json
-exe: bool			exeGyms.csv
-
-raid: Raid
-obsolete: timecode (int)
-alerts: [Channel = {name, id, filter}]
+gyms.json:
+  point: [lat,lng] (float)	rawGyms.json
+  name: replace ' ; trim	rawGyms.json
+  c12key: S2L12 cell ID		s2-geometry
+  c12: S2L12 cell index		cellDict.json
+  exe: bool			exeGyms.csv
 
 To compile Go file:
-go get ./... 			installs dependencies
-go build [file]			compiles file
+  go get ./... 			installs dependencies
+  go build [file]		compiles file
